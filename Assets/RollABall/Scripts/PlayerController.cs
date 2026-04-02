@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour {
 	// Create private references to the rigidbody component on the player, and the count of pick up objects picked up so far
 	private Rigidbody rb;
 	private int count;
-
+	// NEU: Eine Variable für den Soundeffekt erstellen
+	public AudioSource pickUpSound;
 	// At the start of the game..
 	void Start ()
 	{
@@ -56,6 +57,11 @@ public class PlayerController : MonoBehaviour {
 		{
 			// Make the other game object (the pick up) inactive, to make it disappear
 			other.gameObject.SetActive (false);
+			// NEU: Den Sound abspielen, wenn das Objekt eingesammelt wird
+			if (pickUpSound != null)
+			{
+				pickUpSound.Play();
+			}
 
 			// Add one to the score variable 'count'
 			count = count + 1;
